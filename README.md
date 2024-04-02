@@ -23,7 +23,8 @@ mac-laptop-setup/
 Ensure you have administrator access to your Mac.
 You should be logged into your Apple ID, as some steps may require it.
 
-**Step 1: Clone the Repository**
+### **Step 1: Clone the Repository**
+
 Clone this repository to your local machine:
 
 ```sh
@@ -31,7 +32,8 @@ git clone https://your-repository-url.git
 cd your-repository-directory
 ```
 
-**Step 2: Run the Setup Script**
+### **Step 2: Run the Setup Script**
+
 Make the master setup script executable and run it:
 
 ```sh
@@ -42,7 +44,8 @@ chmod +x scripts/setup.sh
 
 This script will sequentially execute all setup scripts in the scripts directory. It will prompt you for your system password when necessary.
 
-**Step 3: Manually Add SSH Key to GitHub**
+### **Step 3: Manually Add SSH Key to GitHub**
+
 After running github-ssh-setup.sh through the main script, you'll need to manually add the generated SSH key to your GitHub account:
 
 Copy the SSH key to your clipboard:
@@ -53,7 +56,7 @@ pbcopy < ~/.ssh/id_ed25519.pub
 
 - Go to GitHub -> Settings -> SSH and GPG keys -> New SSH key, paste your key, and save it.
 
-**Step 4: Manual Configurations**
+### **Step 4: Manual Configurations**
 
 - iTerm2 Theme: Follow the instructions printed by iterm2.sh to import and select the Snazzy theme in iTerm2.
 - Oh My Zsh Plugins: The script configure-oh-my-zsh.sh automatically configures the specified plugins. Ensure they are activated by opening a new terminal window.
