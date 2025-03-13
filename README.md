@@ -2,34 +2,54 @@
 
 This repository contains scripts to automate the setup of a Mac laptop for development purposes. It installs essential tools, applications, and configurations to get you up and running quickly.
 
+## What Gets Installed
+
+### Command Line Tools & Packages
+
+- Git (Version Control)
+- NVM (Node Version Manager)
+- Tree (Directory visualization)
+- Wget (File downloading)
+
+### GUI Applications
+
+- iTerm2 (Terminal)
+- Google Chrome (Browser)
+- Brave Browser (Privacy-focused browser)
+- Discord (Communication)
+- Spotify (Music)
+- Cursor (Code Editor)
+- Visual Studio Code (Code Editor)
+
 ## Project Structure
 
 ```perl
 mac-laptop-setup/
 ├── scripts/
-│   ├── brew.sh                 # Installs Homebrew and some command-line tools.
-│   ├── oh-my-zsh.sh            # Installs Oh My Zsh.
-│   ├── apps.sh                 # Installs essential applications via Homebrew Cask.
-│   ├── iterm2.sh               # Download Snazzy theme for iterm2
-│   ├── configure-oh-my-zsh.sh  # Configures Oh My Zsh with specified plugins.
-│   └── github-ssh-setup.sh     # Generates an SSH key for GitHub and sets up the SSH config.
-└── setup.sh                    # Master script that orchestrates the setup process.
+│   ├── brew.sh                 # Installs and configures Homebrew
+│   ├── apps.sh                 # Installs all applications and packages
+│   ├── oh-my-zsh.sh           # Installs Oh My Zsh
+│   ├── iterm2.sh              # Sets up iTerm2 with Snazzy theme and configs
+│   ├── configure-oh-my-zsh.sh # Configures Oh My Zsh with specified plugins
+│   └── github-ssh-setup.sh    # Generates an SSH key for GitHub
+└── setup.sh                    # Master script that orchestrates the setup
 ```
 
 ## Setup Instructions
 
 ### Prerequisites
 
-Ensure you have administrator access to your Mac.
-You should be logged into your Apple ID, as some steps may require it.
+- Ensure you have administrator access to your Mac.
+- You should be logged in with your Apple ID, as some steps may require it.
 
-### **Step 1: Clone the Repository**
+### **Step 1: Download and Extract the Repository**
 
-Clone this repository to your local machine:
+Download and extract the repository using curl:
 
 ```sh
-git clone https://your-repository-url.git
-cd your-repository-directory
+curl -L https://github.com/ztbochanski/mac-setup/archive/main.zip -o mac-setup.zip
+unzip mac-setup.zip
+cd mac-setup-main
 ```
 
 ### **Step 2: Run the Setup Script**
@@ -37,31 +57,51 @@ cd your-repository-directory
 Make the master setup script executable and run it:
 
 ```sh
-Copy code
 chmod +x scripts/setup.sh
 ./scripts/setup.sh
 ```
 
 This script will sequentially execute all setup scripts in the scripts directory. It will prompt you for your system password when necessary.
 
-### **Step 3: Manually Add SSH Key to GitHub**
+### **Step 3: iTerm2 Configuration**
 
-After running github-ssh-setup.sh through the main script, you'll need to manually add the generated SSH key to your GitHub account:
+The iTerm2 setup script will create necessary directories and download themes, but some manual configuration is required:
 
-Copy the SSH key to your clipboard:
+1. **Color Scheme Setup**
+
+   - Open iTerm2 > Preferences > Profiles > Colors
+   - Click on Color Presets... > Import
+   - Navigate to `~/.iterm2/Snazzy.itermcolors` and import it
+   - Select 'Snazzy' from the Color Presets dropdown
+
+2. **Background Image Setup**
+
+   - Place your desired background image in `~/.iterm2/backgrounds/`
+   - Go to iTerm2 > Preferences > Profiles > Window
+   - Check 'Background Image'
+   - Click 'Choose...' and select your background image
+   - Recommended settings:
+     - Style: Stretch to Fill
+     - Blur: 15-30
+     - Opacity: 85-95%
+
+3. **Optional Configurations**
+   - Font: Consider installing a Nerd Font for better Oh My Zsh experience
+   - Window: Try Full-Width Top of Screen style with 15-25% transparency
+
+### **Step 4: GitHub SSH Setup**
+
+After running the setup script, add your SSH key to GitHub:
 
 ```sh
 pbcopy < ~/.ssh/id_ed25519.pub
 ```
 
-- Go to GitHub -> Settings -> SSH and GPG keys -> New SSH key, paste your key, and save it.
-
-### **Step 4: Manual Configurations**
-
-- iTerm2 Theme: Follow the instructions printed by iterm2.sh to import and select the Snazzy theme in iTerm2.
-- Oh My Zsh Plugins: The script configure-oh-my-zsh.sh automatically configures the specified plugins. Ensure they are activated by opening a new terminal window.
+- Go to GitHub -> Settings -> SSH and GPG keys -> New SSH key
+- Paste your key and save it
 
 ## Troubleshooting
 
-- If you encounter permission issues, verify that the scripts are executable (`chmod +x scripts/\*.sh`).
+- If you encounter permission issues, verify that the scripts are executable (`chmod +x scripts/*.sh`).
 - Ensure you have internet access throughout the setup process, as the scripts download software from the web.
+- If Homebrew installation fails, make sure you have the latest version of macOS Command Line Tools installed.

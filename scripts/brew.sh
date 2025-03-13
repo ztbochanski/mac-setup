@@ -9,10 +9,5 @@ fi
 echo "Updating Homebrew..."
 brew update
 
-echo "Installing packages..."
-brew install nvm
-brew install --cask iterm2
-brew install git
-
 echo "Cleaning up..."
 brew cleanup
