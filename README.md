@@ -10,6 +10,15 @@ This repository contains scripts to automate the setup of a Mac laptop for devel
 - NVM (Node Version Manager)
 - Tree (Directory visualization)
 - Wget (File downloading)
+- PostgreSQL (Latest version)
+
+### Development & Container Tools
+
+- Docker Desktop (Containerization)
+- PostgreSQL (Database, runs as a service)
+  - Latest stable version from Homebrew
+  - Automatically creates a superuser matching your system username
+  - Runs on default port 5432
 
 ### GUI Applications
 
@@ -89,7 +98,38 @@ The iTerm2 setup script will create necessary directories and download themes, b
    - Font: Consider installing a Nerd Font for better Oh My Zsh experience
    - Window: Try Full-Width Top of Screen style with 15-25% transparency
 
-### **Step 4: GitHub SSH Setup**
+### **Step 4: Docker Setup**
+
+After installation:
+
+1. Launch Docker Desktop from your Applications folder
+2. Complete the first-time setup and accept the terms
+3. Verify installation:
+   ```sh
+   docker --version
+   docker compose version
+   ```
+
+### **Step 5: PostgreSQL Setup**
+
+PostgreSQL is automatically configured with:
+
+- Latest stable version from Homebrew
+- Default user: Your system username (with superuser privileges)
+- Default port: 5432
+
+To verify the installation:
+
+```sh
+# Connect to PostgreSQL
+psql postgres
+
+# Check version and connection info
+SELECT version();
+\conninfo
+```
+
+### **Step 6: GitHub SSH Setup**
 
 After running the setup script, add your SSH key to GitHub:
 
@@ -105,3 +145,5 @@ pbcopy < ~/.ssh/id_ed25519.pub
 - If you encounter permission issues, verify that the scripts are executable (`chmod +x scripts/*.sh`).
 - Ensure you have internet access throughout the setup process, as the scripts download software from the web.
 - If Homebrew installation fails, make sure you have the latest version of macOS Command Line Tools installed.
+- If PostgreSQL fails to start, try: `brew services restart postgresql`
+- If Docker Desktop fails to start, ensure virtualization is enabled in your system settings.
