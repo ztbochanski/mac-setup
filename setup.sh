@@ -1,6 +1,8 @@
 #!/bin/bash
 
 SCRIPT_DIR="./scripts"
+ZIP_FILE="/mac-setup.zip"
+EXTRACTED_DIR="/mac-setup-main"
 
 echo "Starting laptop setup..."
 
@@ -35,6 +37,9 @@ $SCRIPT_DIR/oh-my-zsh.sh
 # Configure Oh My Zsh with plugins
 echo "Configuring Oh My Zsh..."
 $SCRIPT_DIR/configure-oh-my-zsh.sh
+
+echo "Cleaning up installation files..."
+rm -rf "$ZIP_FILE" "$EXTRACTED_DIR"
 
 echo "Setup complete!"
 echo "Please follow any manual instructions provided by the scripts."
