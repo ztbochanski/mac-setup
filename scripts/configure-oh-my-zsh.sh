@@ -2,6 +2,9 @@
 
 echo "Configuring Oh My Zsh plugins..."
 
+# Install plugins
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 # Define the plugins you want to enable
 PLUGINS="plugins=(git node npm nvm github zsh-syntax-highlighting)"
 
