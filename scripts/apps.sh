@@ -57,7 +57,9 @@ check_command "git"
 brew install nvm
 
 # You should create NVM's working directory if it doesn't exist:
-mkdir ~/.nvm
+if [ ! -d "$HOME/.nvm" ]; then
+    mkdir ~/.nvm
+fi
 
 # Add the following to your shell profile e.g. ~/.profile or ~/.zshrc:
 export NVM_DIR="$HOME/.nvm"
