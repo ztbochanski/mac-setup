@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the email address associated with your GitHub account
-EMAIL="your_email@gmail.com"
+EMAIL="ztbochanski@gmail.com"
 
 # Check for existing Ed25519 key before generating a new one
 if [ ! -f ~/.ssh/id_ed25519 ]; then
