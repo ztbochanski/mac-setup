@@ -3,13 +3,9 @@
 # Define the email address associated with your GitHub account
 EMAIL="ztbochanski@gmail.com"
 
-# Check for existing Ed25519 key before generating a new one
-if [ ! -f ~/.ssh/id_ed25519 ]; then
-    echo "Generating a new Ed25519 SSH key for GitHub..."
-    ssh-keygen -t ed25519 -C "$EMAIL" -f ~/.ssh/id_ed25519 -N ""
-else
-    echo "An Ed25519 SSH key already exists."
-fi
+echo "Generating a new Ed25519 SSH key for GitHub..."
+ssh-keygen -t ed25519 -C "$EMAIL" -f ~/.ssh/id_ed25519 -N ""
+
 
 # Start the ssh-agent in the background
 eval "$(ssh-agent -s)"
