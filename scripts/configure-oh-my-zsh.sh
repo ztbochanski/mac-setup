@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 echo "Configuring Oh My Zsh plugins..."
 
