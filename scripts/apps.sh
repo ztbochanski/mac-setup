@@ -90,7 +90,7 @@ echo "Installing GUI Applications..."
 
 # Terminal
 brew install --cask iterm2
-check_command "iterm2"
+[ -d "/Applications/iTerm.app" ] && echo -e "${GREEN}✓${NC} iTerm installed" || echo -e "${RED}✗${NC} iTerm installation failed"
 
 # Browsers
 brew install --cask google-chrome
