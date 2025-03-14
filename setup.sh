@@ -17,14 +17,6 @@ xcode-select --install
 echo "Installing Homebrew and essential packages..."
 $SCRIPT_DIR/brew.sh
 
-# Install Oh My Zsh
-echo "Installing Oh My Zsh..."
-$SCRIPT_DIR/oh-my-zsh.sh
-
-# Configure Oh My Zsh with plugins
-echo "Configuring Oh My Zsh..."
-$SCRIPT_DIR/configure-oh-my-zsh.sh
-
 # Install applications
 echo "Installing applications..."
 $SCRIPT_DIR/apps.sh
@@ -35,6 +27,14 @@ $SCRIPT_DIR/iterm2.sh
 
 echo "Github ssh setup..."
 $SCRIPT_DIR/github-ssh-setup.sh
+
+# Install Oh My Zsh
+echo "Installing Oh My Zsh..."
+$SCRIPT_DIR/oh-my-zsh.sh
+
+# Configure Oh My Zsh with plugins
+echo "Configuring Oh My Zsh..."
+$SCRIPT_DIR/configure-oh-my-zsh.sh
 
 echo "Setup complete!"
 echo "Please follow any manual instructions provided by the scripts."
