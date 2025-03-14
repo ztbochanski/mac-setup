@@ -66,8 +66,8 @@ cd mac-setup-main
 Make the master setup script executable and run it:
 
 ```sh
-chmod +x scripts/setup.sh
-./scripts/setup.sh
+chmod +x setup.sh
+./setup.sh
 ```
 
 This script will sequentially execute all setup scripts in the scripts directory. It will prompt you for your system password when necessary.
