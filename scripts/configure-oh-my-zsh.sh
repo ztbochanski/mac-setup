@@ -6,6 +6,8 @@ echo "Configuring Oh My Zsh plugins..."
 PLUGINS="plugins=(git node npm nvm github zsh-syntax-highlighting)"
 
 # Use sed to replace the plugins line in .zshrc. This will add/replace the plugins line.
-sed -i '' "/^plugins=/c\\$PLUGINS" $HOME/.zshrc
+sed -i '' "s/^plugins=(.*)$/$(echo $PLUGINS | sed 's/\//\\\//g')/" ~/.zshrc
+cat ~/.zshrc | grep '^plugins='
+source ~/.zshrc
 
 echo "Oh My Zsh plugins configured."
