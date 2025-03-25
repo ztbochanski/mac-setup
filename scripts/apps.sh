@@ -19,23 +19,6 @@ check_command() {
     fi
 }
 
-# Function to test PostgreSQL connection
-test_postgres() {
-    if psql postgres -c '\q' >/dev/null 2>&1; then
-        echo -e "${GREEN}✓${NC} PostgreSQL is running and accessible"
-        if psql postgres -c "SELECT current_user;" | grep -q "$(whoami)"; then
-            echo -e "${GREEN}✓${NC} PostgreSQL user $(whoami) configured correctly"
-            return 0
-        else
-            echo -e "${RED}✗${NC} PostgreSQL user $(whoami) not configured correctly"
-            return 1
-        fi
-    else
-        echo -e "${RED}✗${NC} PostgreSQL is not running or not accessible"
-        return 1
-    fi
-}
-
 # Function to test Docker
 test_docker() {
     if docker info >/dev/null 2>&1; then
@@ -73,14 +56,6 @@ else
     echo -e "${RED}✗${NC} nvm installation failed"
     exit 1
 fi
-
-
-# Database Tools
-brew install postgresql
-brew services start postgresql
-echo "Testing PostgreSQL installation..."
-sleep 3  # Give PostgreSQL a moment to start
-test_postgres || (echo "Retrying PostgreSQL setup..." && brew services restart postgresql && sleep 3 && test_postgres)
 
 # Shell Tools
 brew install tree
@@ -120,13 +95,6 @@ brew install --cask docker
 echo "Installing Docker Desktop..."
 sleep 3  # Give installer time to finish
 
-# Post-installation setup
-echo "Running post-installation setup..."
-
-# Create default PostgreSQL user (same as system user)
-echo "Setting up PostgreSQL user..."
-createuser -s $(whoami) 2>/dev/null || true
-
 # Final verification
 echo -e "\nRunning final verification tests..."
 echo "----------------------------------------"
@@ -137,10 +105,6 @@ check_command "git" || exit 1
 [ -f "$HOME/.nvm/nvm.sh" ] || exit 1
 check_command "tree" || exit 1
 check_command "wget" || exit 1
-
-# Test PostgreSQL
-echo -e "\nTesting PostgreSQL:"
-test_postgres || exit 1
 
 # Test Docker installation
 echo -e "\nTesting Docker installation:"

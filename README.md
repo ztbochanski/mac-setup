@@ -10,15 +10,10 @@ This repository contains scripts to automate the setup of a Mac laptop for devel
 - NVM (Node Version Manager)
 - Tree (Directory visualization)
 - Wget (File downloading)
-- PostgreSQL (Latest version)
 
 ### Development & Container Tools
 
 - Docker Desktop (Containerization)
-- PostgreSQL (Database, runs as a service)
-  - Latest stable version from Homebrew
-  - Automatically creates a superuser matching your system username
-  - Runs on default port 5432
 
 ### GUI Applications
 
@@ -110,26 +105,7 @@ After installation:
    docker compose version
    ```
 
-### **Step 5: PostgreSQL Setup**
-
-PostgreSQL is automatically configured with:
-
-- Latest stable version from Homebrew
-- Default user: Your system username (with superuser privileges)
-- Default port: 5432
-
-To verify the installation:
-
-```sh
-# Connect to PostgreSQL
-psql postgres
-
-# Check version and connection info
-SELECT version();
-\conninfo
-```
-
-### **Step 6: GitHub SSH Setup**
+### **Step 5: GitHub SSH Setup**
 
 After running the setup script, add your SSH key to GitHub:
 
@@ -145,5 +121,4 @@ pbcopy < ~/.ssh/id_ed25519.pub
 - If you encounter permission issues, verify that the scripts are executable (`chmod +x scripts/*.sh`).
 - Ensure you have internet access throughout the setup process, as the scripts download software from the web.
 - If Homebrew installation fails, make sure you have the latest version of macOS Command Line Tools installed.
-- If PostgreSQL fails to start, try: `brew services restart postgresql`
 - If Docker Desktop fails to start, ensure virtualization is enabled in your system settings.
